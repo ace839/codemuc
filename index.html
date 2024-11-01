@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #FF5722; /* Laranja */
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 700px;
+            height: auto;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .nav div {
+            margin: 0 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            padding: 10px;
+            background-color: #E64A19;
+            border-radius: 5px;
+        }
+        .nav div:hover {
+            background-color: #D84315;
+        }
+        .category {
+            margin: 20px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .button {
+            background-color: #FF5722;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .button:hover {
+            background-color: #E64A19;
+        }
+        .notification {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            padding: 10px;
+            background-color: #FF5722;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .checkout-form {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            max-width: 90%;
+            width: 400px;
+            overflow-y: auto;
+        }
+        .checkout-form h3 {
+            margin-bottom: 15px;
+        }
+        .checkout-form label {
+            font-weight: bold;
+        }
+        .checkout-form input,
+        .checkout-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://i.postimg.cc/Y0vDktML/ololol.jpg" alt="Logo do Mercado Online" class="logo">
+</header>
+
+<div class="nav">
+    <div onclick="scrollToCategory('frios')">Frios</div>
+    <div onclick="scrollToCategory('graos')">Grãos</div>
+    <div onclick="scrollToCategory('limpeza')">Limpeza</div>
+    <div onclick="scrollToCategory('bebidas')">Bebidas</div>
+    <div onclick="scrollToCategory('doces')">Doces</div>
+</div>
+
+<div class="category" id="frios">
+    <h2>Frios</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Queijo">
+            <h3>Queijo</h3>
+            <p>R$ 15,00</p>
+            <button class="button" onclick="addToCart('Queijo', 15.00)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Presunto">
+            <h3>Presunto</h3>
+            <p>R$ 12,00</p>
+            <button class="button" onclick="addToCart('Presunto', 12.00)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>
+
+<div class="category" id="graos">
+    <h2>Grãos</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Feijão">
+            <h3>Feijão</h3>
+            <p>R$ 8,00</p>
+            <button class="button" onclick="addToCart('Feijão', 8.00)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Lentilha">
+            <h3>Lentilha</h3>
+            <p>R$ 10,00</p>
+            <button class="button" onclick="addToCart('Lentilha', 10.00)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>
+
+<div class="category" id="limpeza">
+    <h2>Limpeza</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Detergente">
+            <h3>Detergente</h3>
+            <p>R$ 3,50</p>
+            <button class="button" onclick="addToCart('Detergente', 3.50)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Desinfetante">
+            <h3>Desinfetante</h3>
+            <p>R$ 5,00</p>
+            <button class="button" onclick="addToCart('Desinfetante', 5.00)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>
+
+<div class="category" id="bebidas">
+    <h2>Bebidas</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Refrigerante">
+            <h3>Refrigerante 2L</h3>
+            <p>R$ 6,99</p>
+            <button class="button" onclick="addToCart('Refrigerante 2L', 6.99)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Suco">
+            <h3>Suco Natural 1L</h3>
+            <p>R$ 4,99</p>
+            <button class="button" onclick="addToCart('Suco Natural 1L', 4.99)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>
+
+<div class="category" id="doces">
+    <h2>Doces</h2>
+    <div class="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Chocolate">
+            <h3>Chocolate</h3>
+            <p>R$ 8,00</p>
+            <button class="button" onclick="addToCart('Chocolate', 8.00)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/200" alt="Biscoito">
+            <h3>Biscoito</h3>
+            <p>R$ 5,00</p>
+            <button class="button" onclick="addToCart('Biscoito', 5.00)">Adicionar ao Carrinho</button>
+        </div>
+    </div>
+</div>
+
+<div class="notification" id="cartNotification" onclick="toggleCart()">
+    🛒 Carrinho (<span id="cartCount">0</span>)
+</div>
+
+<div class="checkout-form" id="cartModal">
+    <h3>Carrinho de Compras</h3>
+    <div id="cartItems"></div>
+    <button class="button" onclick="proceedToCheckout()">Finalizar Compra</button>
+    <button class="button" onclick="closeCart()">Fechar</button>
+</div>
+
+<div class="checkout-form" id="checkoutForm">
+    <h3>Informações de Compra</h3>
+    <label>Nome:</label>
+    <input type="text" id="name" required>
+    <label>Telefone:</label>
+    <input type="text" id="phone" required>
+    <label>Endereço:</label>
+    <input type="text" id="address" required>
+    <label>Método de Pagamento:</label>
+    <select id="paymentMethod" required>
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Pix">Pix</option>
+        <option value="Cartão">Cartão</option>
+    </select>
+    <button class="button" onclick="sendOrder()">Enviar Pedido</button>
+    <button class="button" onclick="cancelOrder()">Cancelar</button>
+</div>
+
+<script>
+    const cart = [];
+
+    function addToCart(productName, price) {
+        cart.push({ name: productName, price });
+        displayCartItems();
+        document.getElementById('cartCount').innerText = cart.length; // Atualiza o contador
+    }
+
+    function displayCartItems() {
+        const cartItemsDiv = document.getElementById('cartItems');
+        cartItemsDiv.innerHTML = '';
+
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML = `${item.name} - R$ ${item.price.toFixed(2)}`;
+            cartItemsDiv.appendChild(cartItem);
+        });
+    }
+
+    function toggleCart() {
+        const modal = document.getElementById('cartModal');
+        modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function closeCart() {
+        document.getElementById('cartModal').style.display = 'none';
+    }
+
+    function proceedToCheckout() {
+        if (cart.length === 0) {
+            alert('O carrinho está vazio!');
+            return;
+        }
+        document.getElementById('checkoutForm').style.display = 'block';
+        closeCart();
+    }
+
+    function sendOrder() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
+
+        const orderDetails = cart.map(item => `${item.name} - R$ ${item.price.toFixed(2)}`).join('\n');
+        const message = `Nome: ${name}\nTelefone: ${phone}\nEndereço: ${address}\nMétodo de Pagamento: ${paymentMethod}\n\nItens do Pedido:\n${orderDetails}`;
+
+        const whatsappLink = `https://wa.me/5534997086180?text=${encodeURIComponent(message)}`;
+        window.open(whatsappLink, '_blank');
+        cart.length = 0; // Limpa o carrinho após o pedido
+        displayCartItems(); // Atualiza a visualização do carrinho
+        document.getElementById('cartCount').innerText = cart.length; // Atualiza o contador
+    }
+
+    function cancelOrder() {
+        document.getElementById('checkoutForm').style.display = 'none';
+    }
+
+    function scrollToCategory(categoryId) {
+        document.getElementById(categoryId).scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+<footer>
+    <p>&copy; 2024 Mercado Online</p>
+</footer>
+
+</body>
+</html>
